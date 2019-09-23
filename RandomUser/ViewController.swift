@@ -8,10 +8,14 @@
 
 import UIKit
 import Alamofire
+import RandomUserKit
+
 class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        print("Random: \(RandomUserKit().random())")
 
         Alamofire.request("https://randomuser.me/api/").response { r in
             DispatchQueue.main.async { [weak self] in
@@ -19,6 +23,8 @@ class ViewController: UIViewController {
                 self?.present(a, animated: true, completion: nil)
             }
         }
+
+
     }
 
 }
