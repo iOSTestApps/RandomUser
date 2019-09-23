@@ -7,14 +7,19 @@
 //
 
 import UIKit
-
+import Alamofire
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
+        Alamofire.request("https://randomuser.me/api/").response { r in
+            DispatchQueue.main.async { [weak self] in
+                let a = UIAlertController(title: "Success!", message: "We got a random user!", preferredStyle: .alert)
+                self?.present(a, animated: true, completion: nil)
+            }
+        }
+    }
 
 }
 
